@@ -1,8 +1,7 @@
 ﻿@model HtmlHelperLab.Models.NorthWindModel.Product
 
-@using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
+
+       
 
         <div class="form-horizontal">
         
@@ -40,9 +39,9 @@
                     @Html.ValidationMessageFor(model => model.UnitPrice, "", new { @class = "text-danger" })
                 </div>
             </div>
-
+            <p><input type="submit" value="Save" /></p>
         </div>
-    }
+  
 
     <div>
         @Html.ActionLink("Back to List", "Index")
