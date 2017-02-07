@@ -9,27 +9,31 @@ namespace HtmlHelperLab.Models.CustomerValidation
 {
     public class WordNum : ValidationAttribute
     {
-        private readonly string _chars;
+        private readonly int _max;
         // [Exclude ("^%$#@!")]
 
-        public WordNum(string chars) : base("{0} exceed three words.")
+        public WordNum(int num) : base("{0} exceed three words.")
         {
-            _chars = chars;
+            _max = num;
         }
 
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
-            Regex expression = new Regex(@_chars);
+            //Regex expression = new Regex(@_chars);
             //"[A-Za-z]*[ ]{1}[A-Za-z]*[ ]{1}[A-Za-z]*");
-            if (expression.IsMatch(value.ToString()))
+
+            if (value != null)
             {
-                return ValidationResult.Success;
+
+                int num = value.ToString().Split(' ').Count();
+                if (num > _max)
+                {
+                    var errorMessage = FormatErrorMessage(validationContext.DisplayName);
+                    return new ValidationResult(errorMessage);
+                }
             }
-            else {
-                var errorMessage = FormatErrorMessage(validationContext.DisplayName);
-                return new ValidationResult(errorMessage);
-            }
-            
+            return ValidationResult.Success;
+
         }
 
     }
