@@ -20,7 +20,7 @@ namespace HtmlHelperLab.Models.NorthWindModel
         [Display(Name = "Product Name")]
         [StringLength(30, ErrorMessage = "The {0} must be between {2} and {1} characters.", MinimumLength = 5)]
         [ExcludeChar("/.,!@#$%", ErrorMessage = "Name should not contain these chars: '/.,!@#$%'.")]
-        [WordNum(@"^[a-zA-Z]*[\s][a-zA-Z]*[\s][a-zA-Z]*$", ErrorMessage = "only three words maximum")]
+        [WordNum(@"^[a-zA-Z]*[\s]?[a-zA-Z]*?[\s]?[a-zA-Z]*?$", ErrorMessage = "only three words maximum")]
         public object ProductName { get; set; }
 
         [UIHint("_SupplierDropDownList")]
